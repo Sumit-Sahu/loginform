@@ -14,73 +14,79 @@ const Login = () => {
 
     const validateEmail = (mail) => {
         var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if(mail.match(mailformat)) {
-            setformError({...formError, "emailError":null});
+        if (mail.match(mailformat)) {
+            setformError({ ...formError, "emailError": null });
             return true;
         }
         else {
-            setformError({...formError, "emailError":"Please enter a valid Email"});
+            setformError({ ...formError, "emailError": "Please enter a valid Email" });
             return false;
         }
     }
 
     const validatePassword = (pass) => {
         var passformat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-        if(pass.match(passformat)) {
-            setformError({...formError, "passwordError":null});
+        if (pass.match(passformat)) {
+            setformError({ ...formError, "passwordError": null });
             return true;
         }
         else {
-            setformError({...formError, "passwordError":"Password must be 8 characters or more with at least one uppercase letter, one lowercase letter, one number and one special character"});
+            setformError({ ...formError, "passwordError": "Password must be 8 characters or more with at least one uppercase letter, one lowercase letter, one number and one special character" });
             return false;
         }
     }
 
     const onChange = e => {
         setformData({ ...formData, [e.target.name]: e.target.value });
-        if( e.target.name === "email") {
+        if (e.target.name === "email") {
             validateEmail(e.target.value);
         }
-        else if(e.target.name === "password") {
+        else if (e.target.name === "password") {
             validatePassword(e.target.value);
         }
 
     }
     const onsubmit = e => {
         e.preventDefault();
-        if(validateEmail(email) && validatePassword(password)){
+        if (validateEmail(email) && validatePassword(password)) {
             console.log(formData);
         }
     }
     return (
         <Fragment>
-            <div className="card">
-            <form className="form" onSubmit ={ e => onsubmit(e)}>
-                <div className="form-group">
-                    <input
-                        className="form-input"
-                        type="email"
-                        placeholder="Email Address"
-                        name="email"
-                        value={email}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                    { emailError && <p>{emailError}</p> }
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div className="card card-signin my-5">
+                            <form className="form form-signin" onSubmit={e => onsubmit(e)}>
+                                <h1 className="form-title">LOGIN</h1>
+                                <div className="form-group">
+                                    <input
+                                        className="form-control"
+                                        type="email"
+                                        placeholder="Email Address"
+                                        name="email"
+                                        value={email}
+                                        onChange={e => onChange(e)}
+                                    />
+                                    {emailError && <p className="field-error">{emailError}</p>}
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        className="form-control"
+                                        type="password"
+                                        placeholder="Password"
+                                        name="password"
+                                        value={password}
+                                        onChange={e => onChange(e)}
+                                    />
+                                    {passwordError && <p className="field-error">{passwordError}</p>}
+                                </div>
+                                <button className="btn btn-primary btn-lg btn-block" type="submit" >Login</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <input
-                        className="form-input"
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        value={password}
-                        onChange={e => onChange(e)}
-                    />
-                    { passwordError && <p>{passwordError}</p> }
-                </div>
-                <input type="submit" />
-            </form>
             </div>
         </Fragment>
     )

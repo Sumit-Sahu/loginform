@@ -1,12 +1,28 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 /* body {
   background: #007bff;
   background: linear-gradient(to right, #0062E6, #33AEFF);
 } */
+
+.App {
+  background-color: antiquewhite;
+  min-height: 100vh;
+}
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+.form-title {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 39px;
+  color: #333;
+  line-height: 1.2;
+  text-align: center;
+}
+.field-error {
+  color: #f44336;
+  font-size: 0.8rem;
+}
